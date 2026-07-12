@@ -1,0 +1,616 @@
+<title>The BrainLift — Field Manual</title>
+<style>
+  :root {
+    /* neutrals — cool paper, biased faintly toward the foundational indigo */
+    --bg: #E1E3E8;
+    --surface: #F1F2F4;
+    --surface-2: #F9FAFB;
+    --text: #1A1C23;
+    --text-muted: #565B67;
+    --hairline: rgba(22, 24, 32, 0.13);
+    --hairline-strong: rgba(22, 24, 32, 0.26);
+
+    /* DOK temperature ramp — cold bedrock up to hot spike */
+    --dok1: #43549A;   /* foundational — indigo */
+    --dok2: #1C7C82;   /* summaries — teal */
+    --dok3: #9A6D1E;   /* insights — bronze */
+    --dok4: #C0821A;   /* spiky POV — marigold (accent) */
+    --dok1-wash: rgba(67, 84, 154, 0.10);
+    --dok2-wash: rgba(28, 124, 130, 0.10);
+    --dok3-wash: rgba(154, 109, 30, 0.11);
+    --dok4-wash: rgba(192, 130, 26, 0.13);
+
+    --accent: var(--dok4);
+    --accent-ink: #7A5306;
+
+    /* semantic — kept low-saturation, distinct from the marigold accent */
+    --good: #3C7A50;
+    --good-wash: rgba(60, 122, 80, 0.11);
+    --bad: #A6432C;
+    --bad-wash: rgba(166, 67, 44, 0.10);
+
+    --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --font-body: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    --font-mono: "SFMono-Regular", "SF Mono", "JetBrains Mono", "Berkeley Mono", ui-monospace, Menlo, Consolas, monospace;
+
+    --step--1: 0.78rem;
+    --step-0: 1.0625rem;
+    --step-1: 1.32rem;
+    --step-2: 1.72rem;
+    --step-3: 2.25rem;
+    --step-4: clamp(2.6rem, 6vw, 3.7rem);
+
+    --measure: 64ch;
+    --radius: 4px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #131620;
+      --surface: #1A1E29;
+      --surface-2: #212634;
+      --text: #D9DCE4;
+      --text-muted: #8A90A0;
+      --hairline: rgba(255, 255, 255, 0.10);
+      --hairline-strong: rgba(255, 255, 255, 0.20);
+
+      --dok1: #8296D8;
+      --dok2: #3FB2B8;
+      --dok3: #D9A648;
+      --dok4: #F1B02C;
+      --dok1-wash: rgba(130, 150, 216, 0.13);
+      --dok2-wash: rgba(63, 178, 184, 0.12);
+      --dok3-wash: rgba(217, 166, 72, 0.12);
+      --dok4-wash: rgba(241, 176, 44, 0.14);
+
+      --accent: var(--dok4);
+      --accent-ink: #F1B02C;
+
+      --good: #6FB786;
+      --good-wash: rgba(111, 183, 134, 0.13);
+      --bad: #DB7458;
+      --bad-wash: rgba(219, 116, 88, 0.13);
+    }
+  }
+
+  /* explicit toggle overrides — must win in both directions */
+  :root[data-theme="light"] {
+    --bg: #E1E3E8; --surface: #F1F2F4; --surface-2: #F9FAFB;
+    --text: #1A1C23; --text-muted: #565B67;
+    --hairline: rgba(22,24,32,0.13); --hairline-strong: rgba(22,24,32,0.26);
+    --dok1: #43549A; --dok2: #1C7C82; --dok3: #9A6D1E; --dok4: #C0821A;
+    --dok1-wash: rgba(67,84,154,0.10); --dok2-wash: rgba(28,124,130,0.10);
+    --dok3-wash: rgba(154,109,30,0.11); --dok4-wash: rgba(192,130,26,0.13);
+    --accent: var(--dok4); --accent-ink: #7A5306;
+    --good: #3C7A50; --good-wash: rgba(60,122,80,0.11);
+    --bad: #A6432C; --bad-wash: rgba(166,67,44,0.10);
+  }
+  :root[data-theme="dark"] {
+    --bg: #131620; --surface: #1A1E29; --surface-2: #212634;
+    --text: #D9DCE4; --text-muted: #8A90A0;
+    --hairline: rgba(255,255,255,0.10); --hairline-strong: rgba(255,255,255,0.20);
+    --dok1: #8296D8; --dok2: #3FB2B8; --dok3: #D9A648; --dok4: #F1B02C;
+    --dok1-wash: rgba(130,150,216,0.13); --dok2-wash: rgba(63,178,184,0.12);
+    --dok3-wash: rgba(217,166,72,0.12); --dok4-wash: rgba(241,176,44,0.14);
+    --accent: var(--dok4); --accent-ink: #F1B02C;
+    --good: #6FB786; --good-wash: rgba(111,183,134,0.13);
+    --bad: #DB7458; --bad-wash: rgba(219,116,88,0.13);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: var(--step-0);
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap {
+    max-width: 74rem;
+    margin: 0 auto;
+    padding: 0 clamp(1.1rem, 4vw, 2.5rem);
+  }
+  .measure { max-width: var(--measure); }
+
+  /* ---- type ---- */
+  h1, h2, h3 { font-family: var(--font-display); font-weight: 600; text-wrap: balance; line-height: 1.12; margin: 0; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .mono { font-family: var(--font-mono); }
+
+  /* ---- hero ---- */
+  .hero {
+    padding: clamp(3.5rem, 9vw, 6.5rem) 0 clamp(2.5rem, 6vw, 4rem);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .hero .eyebrow { display: block; margin-bottom: 1.4rem; }
+  .hero h1 {
+    font-size: var(--step-4);
+    letter-spacing: -0.015em;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 .lift {
+    font-style: italic;
+    color: var(--accent-ink);
+    position: relative;
+  }
+  .thesis {
+    font-size: var(--step-1);
+    line-height: 1.42;
+    max-width: 40ch;
+    color: var(--text);
+  }
+  .thesis strong { font-weight: 600; }
+
+  .defn {
+    margin-top: clamp(2.2rem, 5vw, 3.2rem);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .defn > div { background: var(--surface); padding: 1.15rem 1.3rem; }
+  .defn h4 {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin: 0 0 0.7rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .defn .is h4 { color: var(--good); }
+  .defn .isnt h4 { color: var(--bad); }
+  .defn ul { margin: 0; padding: 0; list-style: none; }
+  .defn li { padding: 0.28rem 0 0.28rem 1.1rem; position: relative; font-size: 0.96rem; color: var(--text); }
+  .defn li::before { position: absolute; left: 0; font-family: var(--font-mono); font-size: 0.85rem; top: 0.32rem; }
+  .defn .is li::before { content: "+"; color: var(--good); }
+  .defn .isnt li::before { content: "\2212"; color: var(--bad); }
+
+  /* ---- section scaffolding ---- */
+  section { padding: clamp(3rem, 7vw, 5rem) 0; border-bottom: 1px solid var(--hairline); }
+  .sec-head { margin-bottom: 2.4rem; }
+  .sec-head .eyebrow { display: block; margin-bottom: 0.9rem; }
+  .sec-head h2 { font-size: var(--step-3); letter-spacing: -0.01em; }
+  .sec-head p { color: var(--text-muted); margin-top: 0.9rem; }
+
+  /* ---- strata ---- */
+  .strata { display: flex; flex-direction: column; gap: 10px; }
+  .stratum {
+    display: grid;
+    grid-template-columns: 4.2rem 1fr;
+    gap: 1.2rem;
+    align-items: stretch;
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--band);
+    border-radius: var(--radius);
+    padding: 1.3rem 1.4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .stratum::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: var(--band-wash);
+    pointer-events: none;
+  }
+  .stratum > * { position: relative; }
+  .stratum .gauge {
+    font-family: var(--font-mono);
+    display: flex; flex-direction: column; gap: 0.15rem;
+    border-right: 1px solid var(--hairline);
+    padding-right: 0.4rem;
+  }
+  .stratum .gauge .n { font-size: 1.9rem; font-weight: 500; color: var(--band); line-height: 1; font-variant-numeric: tabular-nums; }
+  .stratum .gauge .tag { font-size: 0.64rem; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; }
+  .stratum h3 { font-size: var(--step-1); margin-bottom: 0.25rem; }
+  .stratum .role { font-family: var(--font-mono); font-size: var(--step--1); color: var(--band); letter-spacing: 0.02em; margin-bottom: 0.6rem; }
+  .stratum p { margin: 0 0 0.75rem; color: var(--text); font-size: 0.99rem; }
+  .stratum .spec { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; }
+  .stratum .spec b { color: var(--text); font-weight: 500; }
+
+  .s4 { --band: var(--dok4); --band-wash: var(--dok4-wash); }
+  .s3 { --band: var(--dok3); --band-wash: var(--dok3-wash); }
+  .s2 { --band: var(--dok2); --band-wash: var(--dok2-wash); }
+  .s1 { --band: var(--dok1); --band-wash: var(--dok1-wash); }
+
+  .strata-note {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    color: var(--text-muted);
+    text-align: center;
+    margin-top: 1.2rem;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---- process ---- */
+  .steps { display: grid; gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; }
+  .step { background: var(--surface); padding: 1.3rem 1.5rem; display: grid; grid-template-columns: 2.6rem 1fr; gap: 1rem; align-items: baseline; }
+  .step .num { font-family: var(--font-mono); font-size: 1.05rem; color: var(--accent-ink); font-variant-numeric: tabular-nums; }
+  .step h3 { font-size: var(--step-1); margin-bottom: 0.35rem; }
+  .step p { margin: 0; color: var(--text-muted); font-size: 0.97rem; }
+
+  /* ---- good/bad worked examples ---- */
+  .subject-tag {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    font-family: var(--font-mono); font-size: var(--step--1);
+    background: var(--surface-2); border: 1px solid var(--hairline);
+    padding: 0.4rem 0.75rem; border-radius: 100px; color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+  .subject-tag b { color: var(--text); font-weight: 500; }
+
+  .cmp { display: flex; flex-direction: column; gap: 1.1rem; }
+  .cmp-row { display: grid; grid-template-columns: 5.5rem 1fr 1fr; gap: 1rem; align-items: stretch; }
+  .cmp-row .layer {
+    font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.05em;
+    color: var(--band); text-transform: uppercase; padding-top: 1rem;
+    border-left: 3px solid var(--band); padding-left: 0.7rem; line-height: 1.35;
+  }
+  .cmp-row .layer b { display: block; font-size: 1.15rem; color: var(--band); }
+  .card {
+    border: 1px solid var(--hairline); border-radius: var(--radius);
+    padding: 1.05rem 1.15rem; background: var(--surface); font-size: 0.95rem;
+  }
+  .card .mark {
+    font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.1em;
+    text-transform: uppercase; display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.6rem;
+  }
+  .card.lifts { background: var(--good-wash); border-color: color-mix(in srgb, var(--good) 32%, transparent); }
+  .card.sinks { background: var(--bad-wash); border-color: color-mix(in srgb, var(--bad) 30%, transparent); }
+  .card.lifts .mark { color: var(--good); }
+  .card.sinks .mark { color: var(--bad); }
+  .card p { margin: 0; color: var(--text); }
+  .card .why { margin-top: 0.6rem; font-size: 0.85rem; color: var(--text-muted); font-style: italic; }
+
+  /* disputed callout */
+  .disputed {
+    margin-top: 1.8rem;
+    border: 1px dashed var(--hairline-strong);
+    border-radius: var(--radius);
+    padding: 1.4rem 1.5rem;
+    background: var(--surface-2);
+  }
+  .disputed .mark { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 0.9rem; }
+  .disputed .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; }
+  .disputed .pair > div { background: var(--surface); padding: 0.95rem 1.1rem; }
+  .disputed .pair .who { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+  .disputed .pair p { margin: 0; font-size: 0.93rem; }
+  .disputed .verdict { margin: 1rem 0 0; font-size: 0.9rem; color: var(--text-muted); }
+
+  /* ---- anti-patterns ---- */
+  .anti { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; }
+  .anti li { background: var(--surface); padding: 1.05rem 1.3rem; display: grid; grid-template-columns: 1.6rem 1fr; gap: 0.8rem; align-items: baseline; }
+  .anti li .x { color: var(--bad); font-family: var(--font-mono); font-weight: 700; }
+  .anti li b { font-family: var(--font-display); font-weight: 600; font-size: 1.08rem; }
+  .anti li span { color: var(--text-muted); font-size: 0.95rem; }
+
+  /* ---- caps callout ---- */
+  .caps {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-top: 3px solid var(--accent);
+    border-radius: var(--radius);
+    padding: clamp(1.6rem, 4vw, 2.4rem);
+  }
+  .caps .eyebrow { color: var(--accent-ink); display: block; margin-bottom: 1rem; }
+  .caps h3 { font-size: var(--step-2); margin-bottom: 1rem; letter-spacing: -0.01em; }
+  .caps p { color: var(--text); }
+  .caps p:last-child { margin-bottom: 0; }
+
+  /* ---- checklist / spec ---- */
+  .spec-sheet { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; }
+  .spec-sheet > div { background: var(--surface); padding: 1.25rem 1.4rem; }
+  .spec-sheet h4 { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-ink); margin: 0 0 0.8rem; }
+  .spec-sheet ul { margin: 0; padding: 0; list-style: none; }
+  .spec-sheet li { padding: 0.32rem 0 0.32rem 1.4rem; position: relative; font-size: 0.94rem; }
+  .spec-sheet li::before { content: "\2713"; position: absolute; left: 0; color: var(--good); font-family: var(--font-mono); font-size: 0.8rem; top: 0.36rem; }
+
+  footer { padding: 2.5rem 0 3.5rem; }
+  footer p { font-family: var(--font-mono); font-size: var(--step--1); color: var(--text-muted); margin: 0; }
+
+  /* motion */
+  .rise { opacity: 0; transform: translateY(14px); animation: rise 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) forwards; }
+  .rise.d1 { animation-delay: 0.08s; } .rise.d2 { animation-delay: 0.16s; } .rise.d3 { animation-delay: 0.24s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .card, .stratum { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+  .stratum:hover { transform: translateX(2px); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rise { animation: none; opacity: 1; transform: none; }
+    .stratum:hover { transform: none; }
+    * { scroll-behavior: auto; }
+  }
+
+  /* responsive */
+  @media (max-width: 720px) {
+    .defn { grid-template-columns: 1fr; }
+    .cmp-row { grid-template-columns: 1fr; gap: 0.6rem; }
+    .cmp-row .layer { border-left: none; border-top: 3px solid var(--band); padding: 0.5rem 0 0; }
+    .cmp-row .layer b { display: inline; }
+    .disputed .pair { grid-template-columns: 1fr; }
+    .stratum { grid-template-columns: 3.4rem 1fr; gap: 0.9rem; padding: 1.1rem; }
+  }
+
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <span class="eyebrow rise">Field Manual · Knowledge Craft</span>
+    <h1 class="rise d1">The <span class="lift">BrainLift</span></h1>
+    <p class="thesis rise d2">A structured document engineered to <strong>manufacture a defensible point of view</strong> — not to store what you know, but to change what you're able to think.</p>
+
+    <div class="defn rise d3">
+      <div class="is">
+        <h4>What it is</h4>
+        <ul>
+          <li>A layered climb from fact to opinion, on one narrow topic</li>
+          <li>A curation engine — sources chosen <em>and</em> rejected on purpose</li>
+          <li>The substrate a person or an agent reasons <em>from</em></li>
+        </ul>
+      </div>
+      <div class="isnt">
+        <h4>What it isn't</h4>
+        <ul>
+          <li>A notes dump, a link list, or a summary of "the field"</li>
+          <li>A wiki that tries to be complete and neutral</li>
+          <li>Finished — it holds live disputes rather than resolving them</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section>
+    <div class="sec-head measure">
+      <span class="eyebrow">01 · The core idea</span>
+      <h2>Generic knowledge produces generic output.</h2>
+      <p>Everything a BrainLift does serves one end: encoding a <em>specific</em> worldview densely enough that anything built on top of it — an essay, a product call, an agent's behavior — inherits a real point of view instead of the averaged-out consensus. The lower layers exist to earn the right to hold the top one.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head measure">
+      <span class="eyebrow">02 · Anatomy</span>
+      <h2>Four strata of depth (DOK)</h2>
+      <p>The spine of every BrainLift is an ascending stack of Depth-of-Knowledge layers. Each is built by working <em>on</em> the layer beneath it. Position is meaning: bedrock at the base, the spike at the summit.</p>
+    </div>
+
+    <div class="strata">
+      <article class="stratum s4">
+        <div class="gauge"><span class="n">4</span><span class="tag">Summit</span></div>
+        <div>
+          <h3>Spiky Points of View</h3>
+          <div class="role">// the payload — opinionated &amp; divergent</div>
+          <p>Defensible stances that <em>disagree with the field</em>, with the reasoning that earns them. This is what the whole structure exists to produce. If it wouldn't make an expert argue, it isn't DOK4.</p>
+          <div class="spec"><span>Built from <b>DOK3</b></span><span>Test: <b>Would a smart peer push back?</b></span></div>
+        </div>
+      </article>
+
+      <article class="stratum s3">
+        <div class="gauge"><span class="n">3</span><span class="tag">Ascent</span></div>
+        <div>
+          <h3>Non-Obvious Insights</h3>
+          <div class="role">// what falls out of comparing summaries</div>
+          <p>Cross-cutting observations that only appear when you hold several DOK2 summaries against each other. The things a careful practitioner notices that never make it into the intro material.</p>
+          <div class="spec"><span>Built from <b>DOK2</b></span><span>Test: <b>Is it absent from the textbook?</b></span></div>
+        </div>
+      </article>
+
+      <article class="stratum s2">
+        <div class="gauge"><span class="n">2</span><span class="tag">Strata</span></div>
+        <div>
+          <h3>Compressed Summaries</h3>
+          <div class="role">// facts synthesized into claims</div>
+          <p>Consensus, compressed. What a competent person in the field would sign off on without argument. Not opinion yet — the honest common ground the insights will later cut against.</p>
+          <div class="spec"><span>Built from <b>DOK1</b></span><span>Test: <b>Would the field agree?</b></span></div>
+        </div>
+      </article>
+
+      <article class="stratum s1">
+        <div class="gauge"><span class="n">1</span><span class="tag">Bedrock</span></div>
+        <div>
+          <h3>Foundational Facts</h3>
+          <div class="role">// atomic &amp; verifiable</div>
+          <p>The ground truth: single, checkable statements with a source. No synthesis, no spin. If a claim can't be pinned to something verifiable, it doesn't belong on the bedrock.</p>
+          <div class="spec"><span>Sourced &amp; atomic</span><span>Test: <b>Can it be falsified?</b></span></div>
+        </div>
+      </article>
+    </div>
+    <p class="strata-note">read bottom-up ↑ &nbsp; bedrock earns the ascent · the ascent earns the spike</p>
+  </section>
+
+  <section>
+    <div class="sec-head measure">
+      <span class="eyebrow">03 · The build sequence</span>
+      <h2>How to actually make one</h2>
+      <p>The order matters — this is a genuine sequence, not a menu. Skipping a rung is the most common way a BrainLift comes out hollow.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step"><span class="num">01</span><div><h3>Pin the scope</h3><p>One topic, sharply bounded. "Shell startup performance," not "developer tooling." A BrainLift about everything is a failed BrainLift.</p></div></div>
+      <div class="step"><span class="num">02</span><div><h3>Curate sources — including who you reject</h3><p>Name the experts you deliberately follow and the ones you deliberately don't. The rejections carry as much signal as the picks.</p></div></div>
+      <div class="step"><span class="num">03</span><div><h3>Lay the bedrock (DOK1)</h3><p>Extract atomic, sourced facts. Resist the urge to editorialize — you're pouring foundation, not framing yet.</p></div></div>
+      <div class="step"><span class="num">04</span><div><h3>Compress upward (DOK2 → DOK3)</h3><p>Summarize the facts, then hold the summaries against each other until the non-obvious insights surface. This friction is where DOK3 is born.</p></div></div>
+      <div class="step"><span class="num">05</span><div><h3>Commit the spike (DOK4)</h3><p>State the opinions you'll defend, with the ladder beneath each one visible. Where two spikes genuinely conflict, keep both — flag it disputed, don't resolve it prematurely.</p></div></div>
+      <div class="step"><span class="num">06</span><div><h3>Enforce the caps</h3><p>Trim each layer back to its hard limit. The compression <em>is</em> the product — see §06.</p></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head measure">
+      <span class="eyebrow">04 · Good vs bad, layer by layer</span>
+      <h2>The same topic, lifted and sunk</h2>
+      <p>One subject carried up all four rungs — done well, then done badly. The failures aren't wrong facts; they're claims sitting on the wrong layer.</p>
+    </div>
+
+    <div class="subject-tag"><span>Worked subject:</span><b>zsh startup time</b><span class="mono">// on a fast Apple-silicon machine</span></div>
+
+    <div class="cmp">
+      <div class="cmp-row" style="--band: var(--dok1);">
+        <div class="layer"><b>1</b> Bedrock</div>
+        <div class="card lifts">
+          <div class="mark">✓ Lifts</div>
+          <p>"Zinit's <span class="mono">wait</span> turbo mode defers plugin sourcing until after the first prompt paints. A cold <span class="mono">zsh -i -c exit</span> here measures 210&nbsp;ms baseline."</p>
+          <p class="why">Atomic, sourced, falsifiable — you could re-run it.</p>
+        </div>
+        <div class="card sinks">
+          <div class="mark">✕ Sinks</div>
+          <p>"Zsh can feel kind of slow to start sometimes."</p>
+          <p class="why">Not atomic, not measured, nothing to verify. That's a vibe, not a fact.</p>
+        </div>
+      </div>
+
+      <div class="cmp-row" style="--band: var(--dok2);">
+        <div class="layer"><b>2</b> Summary</div>
+        <div class="card lifts">
+          <div class="mark">✓ Lifts</div>
+          <p>"Most startup cost is synchronous plugin sourcing; deferring it is the single highest-leverage lever available."</p>
+          <p class="why">Compresses several facts into a claim the field would accept.</p>
+        </div>
+        <div class="card sinks">
+          <div class="mark">✕ Sinks</div>
+          <p>"Turbo mode defers plugins until after the first prompt." </p>
+          <p class="why">Just DOK1 restated. A summary must <em>synthesize</em>, not echo.</p>
+        </div>
+      </div>
+
+      <div class="cmp-row" style="--band: var(--dok3);">
+        <div class="layer"><b>3</b> Insight</div>
+        <div class="card lifts">
+          <div class="mark">✓ Lifts</div>
+          <p>"The headline percentage is measured against a bloated baseline. On an already-lean config the <em>absolute</em> saving collapses to ~10&nbsp;ms — below the threshold of perception."</p>
+          <p class="why">Only visible by comparing summaries; contradicts the marketing framing.</p>
+        </div>
+        <div class="card sinks">
+          <div class="mark">✕ Sinks</div>
+          <p>"Turbo mode makes zsh faster."</p>
+          <p class="why">Obvious, and true at DOK2 already. An insight has to cost something to reach.</p>
+        </div>
+      </div>
+
+      <div class="cmp-row" style="--band: var(--dok4);">
+        <div class="layer"><b>4</b> Spike</div>
+        <div class="card lifts">
+          <div class="mark">✓ Lifts</div>
+          <p>"Chasing sub-100&nbsp;ms shell startup is procrastination dressed as craft. Past ~150&nbsp;ms the only honest optimization left is measuring less often."</p>
+          <p class="why">Opinionated, divergent, defensible — a peer would want to argue.</p>
+        </div>
+        <div class="card sinks">
+          <div class="mark">✕ Sinks</div>
+          <p>"A fast shell is good and worth setting up well."</p>
+          <p class="why">Consensus mush. Nobody disagrees, so it moves no one.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="disputed">
+      <div class="mark">◈ Hold the dispute — don't resolve it</div>
+      <div class="pair">
+        <div>
+          <div class="who">Claim A · importance 0.72</div>
+          <p>"Turbo mode cuts zsh startup by roughly 40% on this machine."</p>
+        </div>
+        <div>
+          <div class="who">Claim B · importance 0.72</div>
+          <p>"Turbo mode saves closer to 10&nbsp;ms in absolute terms — the percentage flatters a bloated baseline."</p>
+        </div>
+      </div>
+      <p class="verdict">Both are DOK4, both defensible, and they genuinely conflict. A mature BrainLift keeps the pair <span class="mono">status: disputed</span> and visible. Flattening it to one "answer" would destroy the exact tension that makes the document worth reading.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head measure">
+      <span class="eyebrow">05 · Failure modes</span>
+      <h2>What makes a BrainLift bad</h2>
+      <p>Almost every weak BrainLift fails in one of these ways. Learn to name them and you can fix them on sight.</p>
+    </div>
+
+    <ul class="anti">
+      <li><span class="x">✕</span><div><b>The pancake.</b> <span>All DOK1 and DOK2, no ascent. A tidy summary of the field with zero opinion — informative and completely inert.</span></div></li>
+      <li><span class="x">✕</span><div><b>The soapbox.</b> <span>Straight to DOK4 with no ladder beneath it. Opinions no reader can trace back to a fact — indistinguishable from a rant.</span></div></li>
+      <li><span class="x">✕</span><div><b>Layer inversion.</b> <span>Opinion filed as fact, or obvious restatement filed as insight. The content might be fine; it's sitting on the wrong stratum.</span></div></li>
+      <li><span class="x">✕</span><div><b>Consensus mush.</b> <span>A "spiky" POV nobody would argue with. If it can't provoke a knowledgeable peer, it isn't DOK4 — it's a DOK2 in a costume.</span></div></li>
+      <li><span class="x">✕</span><div><b>The sprawl.</b> <span>Scope creep and soft caps. It keeps absorbing adjacent topics until the compression is gone and it's just a wiki again.</span></div></li>
+      <li><span class="x">✕</span><div><b>Premature resolution.</b> <span>Two real, conflicting DOK4 views quietly merged into one bland "answer." The dispute was the value; averaging it away is a product-defining failure.</span></div></li>
+      <li><span class="x">✕</span><div><b>Uncurated intake.</b> <span>Every source treated as equal, none rejected. Curation with no rejections isn't curation — it's a bookmark folder.</span></div></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="caps">
+      <span class="eyebrow">06 · The non-negotiable</span>
+      <h3>Hard caps, not soft caps.</h3>
+      <p>The single most consequential setting in a BrainLift is the limit on each layer's output. Those caps are <strong>hard</strong>. A BrainLift that lets its DOK layers sprawl "just this once" collapses back into a knowledge dump — and the compression <em>is</em> the product. The whole value proposition is that a reader gets the distilled worldview, not the raw material it was rendered from.</p>
+      <p>Treat any soft-cap setting as a product-defining failure, not a convenience. The moment you relax the caps to fit more in, you've stopped building a BrainLift and started building the thing it was supposed to replace.</p>
+    </div>
+  </section>
+
+  <section style="border-bottom: none;">
+    <div class="sec-head measure">
+      <span class="eyebrow">07 · One-page spec</span>
+      <h2>Ship-ready checklist</h2>
+      <p>Run a finished BrainLift against this before you trust anything built on top of it.</p>
+    </div>
+
+    <div class="spec-sheet">
+      <div>
+        <h4>Structure</h4>
+        <ul>
+          <li>Scope is one narrow, named topic</li>
+          <li>All four DOK layers present</li>
+          <li>Each layer built from the one below</li>
+          <li>Nothing sits on the wrong stratum</li>
+        </ul>
+      </div>
+      <div>
+        <h4>The spike</h4>
+        <ul>
+          <li>At least one POV a peer would contest</li>
+          <li>Every opinion traces to a fact</li>
+          <li>Conflicts kept as disputed pairs</li>
+          <li>No consensus mush at DOK4</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Sources</h4>
+        <ul>
+          <li>Curated, not collected</li>
+          <li>Rejections named, not just picks</li>
+          <li>DOK1 claims each carry a source</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Discipline</h4>
+        <ul>
+          <li>Every layer within its hard cap</li>
+          <li>No scope creep since last pass</li>
+          <li>Reads as a POV, not a wiki</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Field manual · build from bedrock, spend your boldness at the summit, and never soften the caps.</p>
+  </footer>
+
+</div>
