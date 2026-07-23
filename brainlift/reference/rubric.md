@@ -24,10 +24,15 @@ Score each layer, then the document as a whole. Use this in Mode B (review).
 - **Fail signals:** an obvious corollary; a DOK2 summary with the word "interestingly" bolted on.
 
 ### DOK4 — Spiky Points of View
-- [ ] At least one POV a knowledgeable peer would actively contest.
+A SPOV is a one-sentence principle about the domain that is fundamentally important, that informed experts would genuinely argue over, and that the author can defend better than anyone else because of evidence only they hold. Five gates, all required:
+- [ ] **One plain sentence.** The statement stands alone; receipts and argument are expanded beneath it, never inside it.
+- [ ] **Domain-level.** It changes capital allocation, architecture choices, or category bets in the domain — not just the author's org.
+- [ ] **Contested.** Qualified experts with opposed priors would split over it, with real arguments on both sides. Unanimity = DOK2 in costume.
+- [ ] **Invariant, not description.** Causal content; predicts unseen cases; still guides action after the specific instance is fixed. A fact expires when fixed; a principle keeps guiding. ("There are no agents, only sessions" — fact. "Trust the work, not the worker" — principle.)
+- [ ] **Defensible from this document's DOK1s.** The private receipts give the author an edge over anything publicly arguable.
 - [ ] Each opinion has a visible ladder down through DOK3/DOK2 to DOK1.
 - [ ] Genuine conflicts are held as `status: disputed` pairs, not averaged away.
-- **Fail signals:** consensus mush ("fast is good"); floating opinions with no support; a single resolved "answer" where a live dispute belongs.
+- **Fail signals:** consensus mush ("fast is good"); a surprising *fact* filed as the spike (describes, doesn't guide); a paragraph where a sentence belongs; floating opinions with no support; a single resolved "answer" where a live dispute belongs.
 
 ## Whole-document checks
 
