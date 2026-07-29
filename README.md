@@ -8,7 +8,7 @@ Each top-level directory is a self-contained skill: a `SKILL.md` (name + descrip
 
 | Skill | What it does |
 |---|---|
-| [`brainlift`](./brainlift) | Build, review, or render a **BrainLift** — a DOK-layered document (foundational facts → compressed summaries → non-obvious insights → spiky POVs) engineered to manufacture a defensible point of view on one narrow topic. Enforces hard per-layer caps. Ships with an illustrated field manual and a review rubric. |
+| [`brainlift`](./brainlift) | Build, review, or render a **BrainLift** — a DOK-layered document (foundational facts → compressed summaries → non-obvious insights → spiky POVs) engineered to manufacture a defensible point of view on one narrow topic. Enforces hard per-layer caps, and gates every spiky POV on six tests answered in writing: one sentence, foundational to the domain, contested by named opposition, new learning for the reader, an operating imperative, and defensible from your own receipts. Ships with an illustrated field manual and a review rubric. |
 
 ## Installing a skill
 
