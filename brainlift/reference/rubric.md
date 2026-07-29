@@ -24,15 +24,35 @@ Score each layer, then the document as a whole. Use this in Mode B (review).
 - **Fail signals:** an obvious corollary; a DOK2 summary with the word "interestingly" bolted on.
 
 ### DOK4 — Spiky Points of View
-A SPOV is a one-sentence principle about the domain that is fundamentally important, that informed experts would genuinely argue over, and that the author can defend better than anyone else because of evidence only they hold. Five gates, all required:
-- [ ] **One plain sentence.** The statement stands alone; receipts and argument are expanded beneath it, never inside it.
-- [ ] **Domain-level.** It changes capital allocation, architecture choices, or category bets in the domain — not just the author's org.
-- [ ] **Contested.** Qualified experts with opposed priors would split over it, with real arguments on both sides. Unanimity = DOK2 in costume.
-- [ ] **Invariant, not description.** Causal content; predicts unseen cases; still guides action after the specific instance is fixed. A fact expires when fixed; a principle keeps guiding. ("There are no agents, only sessions" — fact. "Trust the work, not the worker" — principle.)
-- [ ] **Defensible from this document's DOK1s.** The private receipts give the author an edge over anything publicly arguable.
+A SPOV is a one-sentence principle that is **foundational to its domain**, that informed experts would **genuinely split over**, that lands as **new learning for most readers**, and that works as an **operating imperative on the problem at hand** — defensible because of evidence its author holds.
+
+Six gates, all required. **Score each gate by filling its row on the card below, not by judging the prose.** A row you can only answer in generalities is a failed gate.
+
+- [ ] **G1 — One plain sentence.** The statement stands alone; receipts and argument are expanded beneath it, never inside it.
+- [ ] **G2 — Foundational to the domain.** Load-bearing: name three real decisions in the domain that resolve differently depending on whether it holds. It moves capital allocation, architecture choices, or category bets — not just the author's org, not one workflow. Fewer than three decisions → a tactic, not a principle.
+- [ ] **G3 — Contested.** Name the expert, school, or vendor position that rejects it and write their strongest counter in one sentence. If the opposition can't be voiced, it's an unexamined assumption. Unanimity = DOK2 in costume.
+- [ ] **G4 — New learning for most readers.** State the belief the informed reader must give up to accept it. Contested and novel are independent — a decades-old holy war is contested and stale; a fresh fact is novel and uncontested. Both required. Novelty is judged on the reader, never the author.
+- [ ] **G5 — Operating imperative.** Complete *"therefore, when X, do Y and not Z"* using nothing but the SPOV. It must still bind after the specific instance is fixed. ("There are no agents, only sessions" — description. "Trust the work, not the worker" — imperative.)
+- [ ] **G6 — Defensible from this document's DOK1s.** Cite which receipts go on the table under challenge, and why they beat what the other side can source publicly.
 - [ ] Each opinion has a visible ladder down through DOK3/DOK2 to DOK1.
 - [ ] Genuine conflicts are held as `status: disputed` pairs, not averaged away.
-- **Fail signals:** consensus mush ("fast is good"); a surprising *fact* filed as the spike (describes, doesn't guide); a paragraph where a sentence belongs; floating opinions with no support; a single resolved "answer" where a live dispute belongs.
+
+**Gate card (fill one per DOK4 item and include it in the report):**
+
+```
+SPOV: <the one sentence>
+G1 one sentence      : ✅ / ❌
+G2 foundational      : decisions that flip — 1) … 2) … 3) …
+G3 contested         : who rejects it — <expert / school / position>
+                       their best counter — "…"
+G4 new learning      : belief the reader must give up — "…"
+G5 imperative        : therefore, when <X>, do <Y> and not <Z>
+G6 defensible        : DOK1 #… , #… — edge over public sourcing: …
+verdict              : DOK4 / demote to DOK3 / demote to DOK1 / cut
+```
+
+- **Fail signals by gate:** *G2* — the tactic (true, actionable, small). *G3* — consensus mush ("fast is good"). *G4* — the stale holy war (argument everyone has heard) or the private revelation (news to the author, textbook to the reader). *G5* — the observation deck (re-describes the world, orders no one) or a surprising *fact* filed as the spike. *G1* — a paragraph where a sentence belongs. *G6* — floating opinion with no receipts. Plus: a single resolved "answer" where a live dispute belongs.
+- **Demote, don't delete.** G2 or G4 failures usually belong a layer down: true-but-small → DOK2/DOK3; well-known → DOK2 by definition.
 
 ## Whole-document checks
 

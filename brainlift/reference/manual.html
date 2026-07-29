@@ -294,6 +294,29 @@
   .disputed .pair p { margin: 0; font-size: 0.93rem; }
   .disputed .verdict { margin: 1rem 0 0; font-size: 0.9rem; color: var(--text-muted); }
 
+  /* gate card */
+  .gatecard {
+    margin-top: 1.8rem;
+    border: 1px solid var(--hairline-strong);
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    padding: 1.3rem 1.5rem;
+  }
+  .gatecard .mark { font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 0.9rem; }
+  .gatecard pre {
+    margin: 0;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+    padding: 1rem 1.15rem;
+  }
+  .gatecard .verdict { margin: 1rem 0 0; font-size: 0.9rem; color: var(--text-muted); }
+
   /* ---- anti-patterns ---- */
   .anti { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; }
   .anti li { background: var(--surface); padding: 1.05rem 1.3rem; display: grid; grid-template-columns: 1.6rem 1fr; gap: 0.8rem; align-items: baseline; }
@@ -399,8 +422,8 @@
         <div>
           <h3>Spiky Points of View</h3>
           <div class="role">// the payload — opinionated &amp; divergent</div>
-          <p>Defensible stances that <em>disagree with the field</em>, with the reasoning that earns them. This is what the whole structure exists to produce. If it wouldn't make an expert argue, it isn't DOK4.</p>
-          <div class="spec"><span>Built from <b>DOK3</b></span><span>Test: <b>Would a smart peer push back?</b></span></div>
+          <p>One-sentence principles, foundational to the domain, that <em>disagree with the field</em> and tell you what to do about it. This is what the whole structure exists to produce. It isn't DOK4 until it clears all six gates in §03.</p>
+          <div class="spec"><span>Built from <b>DOK3</b></span><span>Test: <b>All six gates — §03</b></span></div>
         </div>
       </article>
 
@@ -439,7 +462,38 @@
 
   <section>
     <div class="sec-head measure">
-      <span class="eyebrow">03 · The build sequence</span>
+      <span class="eyebrow">03 · The bar</span>
+      <h2>Six gates a spiky POV must pass</h2>
+      <p>DOK4 is the only layer with an entry exam. A spiky POV is one sentence that is <em>foundational to its domain</em>, that experts would <em>genuinely split over</em>, that lands as <em>new learning</em> for most readers, and that works as an <em>operating imperative</em> on the problem at hand. Miss one gate and it isn't DOK4 — it's a layer below wearing the spike's clothes.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step"><span class="num">G1</span><div><h3>One plain sentence</h3><p>A learning statement, not an explanation. The evidence and the argument are layers expanded <em>after</em> it lands. If it can't be said in a sentence, it isn't understood yet.</p></div></div>
+      <div class="step"><span class="num">G2</span><div><h3>Foundational to the domain</h3><p>Load-bearing, not a corner case. <b>Test:</b> name three real decisions in the domain that resolve differently depending on whether it holds. Fewer than three and you have a tactic, not a principle.</p></div></div>
+      <div class="step"><span class="num">G3</span><div><h3>Contested — a bias experts fight over</h3><p><b>Test:</b> name the expert, school, or vendor position that rejects it, and write their strongest counter in one sentence. If you can't argue the other side, you don't hold a point of view — you hold an unexamined assumption.</p></div></div>
+      <div class="step"><span class="num">G4</span><div><h3>New learning for most readers</h3><p>Contested and novel are independent: a decades-old holy war is contested and stale. <b>Test:</b> state the belief the reader must <em>give up</em> to accept this one. Novelty is judged on the reader, never on the author.</p></div></div>
+      <div class="step"><span class="num">G5</span><div><h3>An operating imperative</h3><p>It issues orders inside the domain and keeps issuing them after any specific instance is fixed. <b>Test:</b> complete <span class="mono">"therefore, when X, do Y and not Z"</span> using nothing but the sentence.</p></div></div>
+      <div class="step"><span class="num">G6</span><div><h3>Defensible from evidence you hold</h3><p>Your DOK1 receipts beat whatever the other side can source publicly. That edge is what makes the POV worth <em>owning</em> rather than merely interesting.</p></div></div>
+    </div>
+
+    <div class="gatecard">
+      <div class="mark">◆ Fill one card per candidate — a gate is passed in writing, not by assertion</div>
+      <pre>SPOV: &lt;the one sentence&gt;
+G1 one sentence      : ✓ / ✕
+G2 foundational      : decisions that flip — 1) … 2) … 3) …
+G3 contested         : who rejects it — &lt;expert / school / position&gt;
+                       their best counter — "…"
+G4 new learning      : belief the reader must give up — "…"
+G5 imperative        : therefore, when &lt;X&gt;, do &lt;Y&gt; and not &lt;Z&gt;
+G6 defensible        : DOK1 #… , #… — edge over public sourcing: …
+verdict              : DOK4 / demote to DOK3 / demote to DOK1 / cut</pre>
+      <p class="verdict">A row you can only answer in generalities is a failed gate. Failing G2 or G4 usually means <em>demote</em>, not delete — true-but-small belongs at DOK2/DOK3, and well-known is DOK2 by definition. Spikiness can't be graded off the prose: stage the argument. If nobody argues, G3 failed; if they argue but yawn, G4 did.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head measure">
+      <span class="eyebrow">04 · The build sequence</span>
       <h2>How to actually make one</h2>
       <p>The order matters — this is a genuine sequence, not a menu. Skipping a rung is the most common way a BrainLift comes out hollow.</p>
     </div>
@@ -449,14 +503,14 @@
       <div class="step"><span class="num">02</span><div><h3>Curate sources — including who you reject</h3><p>Name the experts you deliberately follow and the ones you deliberately don't. The rejections carry as much signal as the picks.</p></div></div>
       <div class="step"><span class="num">03</span><div><h3>Lay the bedrock (DOK1)</h3><p>Extract atomic, sourced facts. Resist the urge to editorialize — you're pouring foundation, not framing yet.</p></div></div>
       <div class="step"><span class="num">04</span><div><h3>Compress upward (DOK2 → DOK3)</h3><p>Summarize the facts, then hold the summaries against each other until the non-obvious insights surface. This friction is where DOK3 is born.</p></div></div>
-      <div class="step"><span class="num">05</span><div><h3>Commit the spike (DOK4)</h3><p>State the opinions you'll defend, with the ladder beneath each one visible. Where two spikes genuinely conflict, keep both — flag it disputed, don't resolve it prematurely.</p></div></div>
-      <div class="step"><span class="num">06</span><div><h3>Enforce the caps</h3><p>Trim each layer back to its hard limit. The compression <em>is</em> the product — see §06.</p></div></div>
+      <div class="step"><span class="num">05</span><div><h3>Commit the spike (DOK4)</h3><p>Generate more candidates than you need, then fill a gate card (§03) for each — only the six-for-six survive. Keep the ladder beneath each one visible. Where two spikes genuinely conflict, keep both: flag it disputed, don't resolve it prematurely.</p></div></div>
+      <div class="step"><span class="num">06</span><div><h3>Enforce the caps</h3><p>Trim each layer back to its hard limit. The compression <em>is</em> the product — see §07.</p></div></div>
     </div>
   </section>
 
   <section>
     <div class="sec-head measure">
-      <span class="eyebrow">04 · Good vs bad, layer by layer</span>
+      <span class="eyebrow">05 · Good vs bad, layer by layer</span>
       <h2>The same topic, lifted and sunk</h2>
       <p>One subject carried up all four rungs — done well, then done badly. The failures aren't wrong facts; they're claims sitting on the wrong layer.</p>
     </div>
@@ -511,12 +565,12 @@
         <div class="card lifts">
           <div class="mark">✓ Lifts</div>
           <p>"Chasing sub-100&nbsp;ms shell startup is procrastination dressed as craft. Past ~150&nbsp;ms the only honest optimization left is measuring less often."</p>
-          <p class="why">Opinionated, divergent, defensible — a peer would want to argue.</p>
+          <p class="why">Six for six: one sentence, foundational (it re-prioritizes what you tune at all), contested, it costs the reader the belief that faster is always better, and it orders you to stop measuring.</p>
         </div>
         <div class="card sinks">
           <div class="mark">✕ Sinks</div>
           <p>"A fast shell is good and worth setting up well."</p>
-          <p class="why">Consensus mush. Nobody disagrees, so it moves no one.</p>
+          <p class="why">Consensus mush — fails G3 and G4. Nobody disagrees, nobody learns, so it moves no one.</p>
         </div>
       </div>
     </div>
@@ -539,7 +593,7 @@
 
   <section>
     <div class="sec-head measure">
-      <span class="eyebrow">05 · Failure modes</span>
+      <span class="eyebrow">06 · Failure modes</span>
       <h2>What makes a BrainLift bad</h2>
       <p>Almost every weak BrainLift fails in one of these ways. Learn to name them and you can fix them on sight.</p>
     </div>
@@ -548,7 +602,11 @@
       <li><span class="x">✕</span><div><b>The pancake.</b> <span>All DOK1 and DOK2, no ascent. A tidy summary of the field with zero opinion — informative and completely inert.</span></div></li>
       <li><span class="x">✕</span><div><b>The soapbox.</b> <span>Straight to DOK4 with no ladder beneath it. Opinions no reader can trace back to a fact — indistinguishable from a rant.</span></div></li>
       <li><span class="x">✕</span><div><b>Layer inversion.</b> <span>Opinion filed as fact, or obvious restatement filed as insight. The content might be fine; it's sitting on the wrong stratum.</span></div></li>
-      <li><span class="x">✕</span><div><b>Consensus mush.</b> <span>A "spiky" POV nobody would argue with. If it can't provoke a knowledgeable peer, it isn't DOK4 — it's a DOK2 in a costume.</span></div></li>
+      <li><span class="x">✕</span><div><b>Consensus mush.</b> <span>A "spiky" POV nobody would argue with. If it can't provoke a knowledgeable peer, it isn't DOK4 — it's a DOK2 in a costume. <span class="mono">(G3)</span></span></div></li>
+      <li><span class="x">✕</span><div><b>The stale holy war.</b> <span>Genuinely contested, and every reader has heard both sides a hundred times. Argument without learning. <span class="mono">(G4)</span></span></div></li>
+      <li><span class="x">✕</span><div><b>The private revelation.</b> <span>Spiky to the author because they only just learned it; textbook to everyone else. Novelty is measured on the reader. <span class="mono">(G4)</span></span></div></li>
+      <li><span class="x">✕</span><div><b>The tactic.</b> <span>True, actionable and small — a tip that changes one workflow, not a principle that changes how the domain is bet on. <span class="mono">(G2)</span></span></div></li>
+      <li><span class="x">✕</span><div><b>The observation deck.</b> <span>Foundational, contested, and inert: it re-describes the world beautifully and orders nobody to do anything differently. <span class="mono">(G5)</span></span></div></li>
       <li><span class="x">✕</span><div><b>The sprawl.</b> <span>Scope creep and soft caps. It keeps absorbing adjacent topics until the compression is gone and it's just a wiki again.</span></div></li>
       <li><span class="x">✕</span><div><b>Premature resolution.</b> <span>Two real, conflicting DOK4 views quietly merged into one bland "answer." The dispute was the value; averaging it away is a product-defining failure.</span></div></li>
       <li><span class="x">✕</span><div><b>Uncurated intake.</b> <span>Every source treated as equal, none rejected. Curation with no rejections isn't curation — it's a bookmark folder.</span></div></li>
@@ -557,7 +615,7 @@
 
   <section>
     <div class="caps">
-      <span class="eyebrow">06 · The non-negotiable</span>
+      <span class="eyebrow">07 · The non-negotiable</span>
       <h3>Hard caps, not soft caps.</h3>
       <p>The single most consequential setting in a BrainLift is the limit on each layer's output. Those caps are <strong>hard</strong>. A BrainLift that lets its DOK layers sprawl "just this once" collapses back into a knowledge dump — and the compression <em>is</em> the product. The whole value proposition is that a reader gets the distilled worldview, not the raw material it was rendered from.</p>
       <p>Treat any soft-cap setting as a product-defining failure, not a convenience. The moment you relax the caps to fit more in, you've stopped building a BrainLift and started building the thing it was supposed to replace.</p>
@@ -566,7 +624,7 @@
 
   <section style="border-bottom: none;">
     <div class="sec-head measure">
-      <span class="eyebrow">07 · One-page spec</span>
+      <span class="eyebrow">08 · One-page spec</span>
       <h2>Ship-ready checklist</h2>
       <p>Run a finished BrainLift against this before you trust anything built on top of it.</p>
     </div>
@@ -584,10 +642,13 @@
       <div>
         <h4>The spike</h4>
         <ul>
-          <li>At least one POV a peer would contest</li>
+          <li>Every DOK4 has a filled six-gate card</li>
+          <li>Three domain decisions flip on it (G2)</li>
+          <li>The opposing expert is named (G3)</li>
+          <li>The belief the reader gives up is stated (G4)</li>
+          <li>"Therefore, when X, do Y not Z" completes (G5)</li>
           <li>Every opinion traces to a fact</li>
           <li>Conflicts kept as disputed pairs</li>
-          <li>No consensus mush at DOK4</li>
         </ul>
       </div>
       <div>
