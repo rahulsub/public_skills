@@ -1,7 +1,7 @@
 ---
 name: brainlift
 description: Build, review, or render a BrainLift — a structured DOK-layered document that manufactures a defensible point of view on one narrow topic. Use when the user wants to create/draft a BrainLift, structure knowledge into DOK1–DOK4 layers, extract or sharpen spiky points of view, critique an existing BrainLift, curate sources for one, or render a BrainLift as a visual field manual. Triggers on "brainlift", "spiky POV", "DOK layers", "depth of knowledge document".
-argument-hint: [build|review|render] [topic or path to draft]
+argument-hint: "[build|review|render] [topic or path to draft]"
 allowed-tools: Read, Write, Edit, Grep, Glob, WebSearch, WebFetch, Artifact
 ---
 
