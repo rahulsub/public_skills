@@ -8,8 +8,11 @@ believe a green run means the same thing everywhere.
 ## Fully portable (no setup)
 
 The model (four classes, five gates), the filing gate, the lens taxonomy, the
-attention standard, the instrumentation recipes, the reporting discipline, and
-`scripts/probe-null-claim.mjs`. Any project, any domain.
+attention standard, the instrumentation recipes, the reporting discipline,
+`scripts/probe-null-claim.mjs`, `scripts/build-report.py` (findings.json → an
+illustrated shareable report, with optional Drive upload/share), the
+closing-the-loop practice, and — for learning products — the distilled reviewer
+principles in `learning-product-principles.md`. Any project, any domain.
 
 ## Needs configuring per project (cheap)
 

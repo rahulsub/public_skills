@@ -21,6 +21,9 @@ versus what is bound to a specific project, and lists what you need access to.
 - **audit** — review existing artifacts. The default. → §Running an audit
 - **conform** — diff artifacts against their source-of-truth specs. → `reference/conformance.md`
 - **render** — rendered-experience verification only (UI/UX, interaction, a11y). → `reference/instrumentation.md`
+
+Concrete tool recipes — Drive/source access, headless vs real-browser control,
+report assembly — are in `reference/tooling.md`.
 - **process** — design or repair the QC system itself. → `reference/failure-classes.md`
 
 ## The model (internalize before reviewing anything)
@@ -53,16 +56,29 @@ more; at the customer gate it costs trust.
 2. **Pick lenses** (`reference/review-lenses.md`). Standard set: conformance,
    rendered UX/attention, child-or-user lens, content quality, regression
    against the historical ledger, engine/code, validators. One lens per agent.
-3. **Fan out.** Run lenses in parallel as subagents, each with: scope, the
+3. **Fan out.** Confirm which build you are testing first (deployed and repo
+   drift apart in both directions — `reference/tooling.md`). Run lenses in
+   parallel as subagents, each with: scope, the
    standing rules it enforces, known-issue list to confirm-or-retract, evidence
    path, and the output contract (finding = {evidence file, location, severity,
    2-3 sentence reviewer-ready comment}).
 4. **Apply the filing gate to every finding** (`reference/filing-gate.md`).
    This is not optional. It is where a 67%-correction-rate review became a
    trustworthy one.
-5. **Assemble** (`reference/evidence.md`) — ranked report, evidence embedded at
-   the moment of failure, credit where the work is good, open decisions with
-   named owners.
+5. **Dedupe, triage, and close** (`reference/closing-the-loop.md`) — merge
+   cross-lens duplicates to root cause, order fixes by consequence × blast
+   radius, close only against re-run evidence, ratchet human catches into
+   machine checks, and publish precision + escape rate.
+6. **Assemble** (`reference/evidence.md`) — every lens emits the shared
+   `findings.json` contract; `scripts/build-report.py` renders it into the
+   shareable illustrated report (screenshots inline with comments) and can
+   upload + share it. Credit where the work is good; open decisions get named
+   owners.
+
+For learning products specifically, load `reference/learning-product-principles.md`
+— the distilled standards expert reviewers actually applied (load/pacing,
+question construction, vocabulary, instruction shape). A project rulebook
+overrides it; its absence does not suspend the standards.
 
 ## The filing gate (short form — full version in reference/)
 

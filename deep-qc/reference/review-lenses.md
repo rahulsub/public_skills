@@ -55,6 +55,34 @@ down, or moved out of the gate? Did known-debt grow to make a run green on
 that a seam string exists? *A green gate that passes a failing artifact is a
 top-severity finding.*
 
+## 8. Accessibility (class 4, and often a compliance obligation)
+Keyboard-only traversal of every interactive element; visible focus; screen-reader
+labels on icon-only controls; contrast against the real background; tap targets
+against the platform floor (44px); motion and autoplay respecting reduced-motion;
+captions on media; text scaling to 200% without loss. For products used by
+children or in schools this is not a nice-to-have — it is frequently a legal
+requirement and it is the lens most often missing entirely.
+
+## 9. Safety and privacy (class 1/2, highest consequence)
+What data leaves the device, and does it need to? PII in logs, analytics or URLs;
+third-party embeds and their trackers; outbound links from a child-facing screen;
+user-generated content paths (open-response answers) and where they are stored or
+sent; account-less usage assumptions; content safety of anything generated at
+runtime. Check against the regime that applies (children's-privacy law, school
+district policy). One finding here outranks a page of UX findings.
+
+## 10. Performance on real hardware
+Cold load and time-to-interactive on the device class the audience actually uses
+(school tablets and low-end Chromebooks, not your laptop); bundle and asset
+weight; memory over a long session; unreferenced media shipping in the build.
+Measure on throttled CPU and network, not on the dev machine.
+
+## 11. Telemetry reality check (when data exists)
+Review against what users actually do — where they drop off, which items they
+retry, which screens they skip — rather than against assumptions. Cheapest way to
+find the screens worth auditing, and it turns "I think this is confusing" into
+"84% retry here".
+
 ## Lens hygiene
 
 - Give each lens the **known issues** relevant to it and require an explicit

@@ -41,12 +41,39 @@ blockers, what depends on it, and what is genuinely human-gated (customer
 replies, sign-offs, hands-on sessions). Calendar time belongs only in that last
 group.
 
+## The findings file (machine-readable)
+
+Every lens emits findings into one `findings.json` so the report builds itself,
+findings dedupe across lenses, and status carries between rounds:
+
+```json
+{ "title": "...", "subtitle": "date, scope, method, coverage caveats",
+  "verdict": "one paragraph",
+  "sections": [ { "heading": "Blockers", "findings": [
+    { "id": "F-1", "severity": "BLOCKER|HIGH|MED|LOW|CLEAN",
+      "location": "unit / page / file:line", "image": "shot.png",
+      "comment": "what the shot shows + judgment + why it matters",
+      "fix": "suggested fix", "verified": true,
+      "status": "confirmed|retracted|open|closed-verified" } ] },
+    { "heading": "Pacing", "table": {"columns": [], "rows": [[]]} } ],
+  "credit": ["what is genuinely good"],
+  "owners": [ {"item": "decision", "owner": "name"} ] }
+```
+
 ## Assembling a shareable document
 
-Embed the images inline with their comments rather than linking a folder — a
-reviewer will not open 90 files. Downscale (≈700px wide) and expect the
-base64-inflated document to be several MB; split into a main report plus an
-appendix if the host refuses the size.
+**Use `scripts/build-report.py`** — it renders `findings.json` into HTML with
+every screenshot embedded beside its comment, resizes to keep the file under
+host conversion caps, and optionally uploads and shares:
+
+```bash
+python3 scripts/build-report.py findings.json --out report.html \
+    --upload --account you@work.com --share teammate@x.com
+```
+
+Embed images inline with their comments rather than linking a folder — a
+reviewer will not open 90 files. ≈700px wide and ~45 images lands near 5MB,
+which converts fine; split into report + appendix if the host refuses it.
 
 If you later retract findings, publish the correction **in a document the same
 people read**, and re-title the original to point at it. Never leave a
