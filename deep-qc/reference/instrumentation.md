@@ -44,6 +44,40 @@ headless (speech, media devices); autoplay policy; a dev-only overlay; a stale
 service worker; fonts/layout differing from a real browser. If you cannot rule
 them out, file as "unverified — needs a real browser".
 
+## Temporal capture: staging defects are invisible at rest
+
+A page screenshotted after it settles looks finished — that is exactly the
+problem. Staging defects (a question visible while its teach content is still
+being narrated; a steps frame dumped whole instead of revealing on the
+narration clock) exist only DURING the narration and vanish from every
+at-rest capture. Four such defects shipped through an audit whose screenshots
+were all settled pages.
+
+Required for every teach-then-work page:
+- Capture **at arrival (t=0)** and **mid-narration** (~1-2s in), not only at
+  rest, and assert: work nodes (questions, clozes, composers) are absent or
+  visibly dormant while the teach clip is playing.
+- Mechanical form: while the page's autoplay clip is before its final mark,
+  query for mounted work-node selectors — presence is a failure. Wire this
+  into the walk harness, not just eyeballs.
+
+## Content-extremes stress test
+
+Every fitting component (word cards, chips, pills, banks, headers) was sized
+against the content that existed when it was built. New content breaks the
+assumption silently: the first 14-letter vocabulary word wrapped a card head
+mid-word, collided the morph-wash with the line above, and split "reproduce"
+before its final "e" on the review chips — three surfaces, one cause.
+
+- Compute the corpus extremes (longest word, longest option, longest
+  sentence, max option count) and render each fitting component with them at
+  the widest AND narrowest supported viewports.
+- Mechanical overlap check: a standalone word's DOM Range yielding >1 client
+  rect means it wrapped — fail for word-display surfaces; bounding-box
+  intersection between decorative rects (washes, highlights) and any other
+  text line is a fail everywhere.
+- Re-run whenever content arrives that extends an extreme.
+
 ## Adversarial passes (cheap, high yield)
 
 Rapid double-taps on every control; wrong-then-right on every item; back and

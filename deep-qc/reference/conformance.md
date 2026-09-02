@@ -46,6 +46,23 @@ Also record the third category honestly: **elements with no canon at all**. If
 the spec is silent (morphology, per-item feedback wording, page furniture),
 say so — that is not divergence, and pretending otherwise inflates the count.
 
+## The convention-parity gap (tier 2.5)
+
+A new artifact built in an evolved codebase inherits the ENGINE but not the
+AUTHORING WIRING that invokes it. Staging idioms (frames that reveal on the
+narration clock, questions that mount after their teach completes, banks that
+arm per blank) live as per-page JSON wiring that accumulated through fix
+waves on OLD artifacts — no spec ever names them, so a conformance diff
+against the design doc comes back clean while the new artifact ships as a
+static dump. This is how a lesson with a perfect content-transfer scorecard
+shipped four staging defects on day one.
+
+Fix: maintain a living **engine-conventions checklist** (the current staging
+/ interaction idioms, each with its reference implementation) as explicit
+tier-2.5 canon, walked per page type on every new build — and back it with a
+mechanical check: any page combining a narrated teach node with a work node
+must carry staging wiring, or fail loud.
+
 ## Signals that you have a class-1 problem
 
 - Internal reviews green, customer unhappy about *content* rather than bugs
